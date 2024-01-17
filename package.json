@@ -1,20 +1,39 @@
 {
-  "name": "hackernews-node-ts",
+  "name": "apollo-prizma-ts",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "NodeJS project with Apollo and Prizma :)",
+  "type": "module",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "private": "false",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development ts-node-dev --exit-child --respawn src/main.ts",
-    "start": "ts-node src/main.ts"
+    "build": "tsc --project tsconfig.build.json",
+    "build:clean": "rm -rf tsconfig.build.tsbuildinfo && rm -rf ./dist",
+    "start:dev": "nodemon --ext js,ts,json,env src/main.ts",
+    "start": "node dist/main.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "nodejs",
+    "typescript",
+    "apollo-server",
+    "prizma"
+  ],
+  "author": {
+    "name": "Ivan Skinder",
+    "email": "lavet13@mail.ru"
+  },
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "20.11.5",
     "cross-env": "7.0.3",
+    "nodemon": "^3.0.3",
     "ts-node": "10.9.2",
-    "ts-node-dev": "2.0.0",
     "typescript": "5.3.3"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "@graphql-tools/schema": "^10.0.2",
+    "dotenv": "^16.3.1",
+    "graphql": "^16.8.1"
   }
 }
