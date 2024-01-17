@@ -9,8 +9,8 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
     "build:clean": "rm -rf tsconfig.build.tsbuildinfo && rm -rf ./dist",
-    "start": "nodemon --ext js,ts,json,env src/main.ts",
-    "serve": "node dist/main.js"
+    "start": "cross-env NODE_ENV=development nodemon --ext js,ts,json,env src/main.ts",
+    "serve": "cross-env NODE_ENV=production node dist/main.js"
   },
   "keywords": [
     "nodejs",
