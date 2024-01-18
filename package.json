@@ -8,9 +8,10 @@
   "private": "false",
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
-    "build:clean": "rm -rf tsconfig.build.tsbuildinfo && rm -rf ./dist",
-    "start": "cross-env NODE_ENV=development nodemon --ext js,ts,json,env src/main.ts",
-    "serve": "cross-env NODE_ENV=production node dist/main.js"
+    "clean": "rm -rf ./dist",
+    "start": "concurrently \"cross-env NODE_ENV=development nodemon --watch './src/**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/main.ts\" \"npm run generate\"",
+    "generate": "graphql-codegen --config codegen.ts --watch src/**/*.*",
+    "serve": "cross-env NODE_ENV=production node --experimental-specifier-resolution=node --trace-warnings dist/main.js"
   },
   "keywords": [
     "nodejs",
@@ -24,16 +25,29 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-resolvers": "^4.0.1",
+    "@graphql-tools/load-files": "^7.0.0",
+    "@parcel/watcher": "^2.4.0",
+    "@types/cors": "^2.8.17",
     "@types/node": "20.11.5",
+    "concurrently": "^8.2.2",
     "cross-env": "7.0.3",
     "nodemon": "^3.0.3",
     "ts-node": "10.9.2",
+    "tsc-watch": "^6.0.4",
     "typescript": "5.3.3"
   },
   "dependencies": {
     "@apollo/server": "^4.10.0",
+    "@graphql-tools/merge": "^9.0.1",
+    "@graphql-tools/resolvers-composition": "^7.0.0",
     "@graphql-tools/schema": "^10.0.2",
+    "common-es": "^1.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "graphql": "^16.8.1"
   }
 }
