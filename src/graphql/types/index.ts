@@ -6,6 +6,8 @@ import { loadFiles } from '@graphql-tools/load-files';
 
 const { __dirname } = getGlobals(import.meta.url);
 
+console.log({ __dirname });
+
 const loadedTypeDefs = await loadFiles(`${__dirname}/**/*.types.*`, {
   ignoreIndex: true,
   requireMethod: async (path: string) => {
